@@ -28,10 +28,7 @@ $firefoxOutputFile = Join-Path $destinationPath (Split-Path $firefoxUri -Leaf)
 $response = Invoke-WebRequest -Uri $firefoxUri -OutFile $firefoxOutputFile -PassThru
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
-<#
+Start-Process -FilePath $firefoxOutputFile -ArgumentList "/S", "/TaskbarShortcut=true", "/PreventRebootRequired=true"
 Start-Process -FilePath $gitOutputFile -ArgumentList "/VERYSILENT"
 Start-Process -FilePath $emacsOutputFile -ArgumentList "/S"
 Start-Process -FilePath $spotifyOutputFile -ArgumentList "/Silent"
-#>
-
-#
