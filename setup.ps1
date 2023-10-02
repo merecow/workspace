@@ -1,4 +1,4 @@
-$destinationPath = "C:\Users\andre\Downloads\test\"
+$destinationPath = $pwd
 
 $gitUri = "https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe"
 
@@ -10,22 +10,22 @@ $firefoxUri = "https://download.mozilla.org/?product=firefox-stub&os=win64&lang=
 
 echo "Downloading Git for Windows..."
 $gitOutputFile = Join-Path $destinationPath (Split-Path $gitUri -Leaf)
-$response = Invoke-WebRequest -Uri $gitUri -OutFile $gitOutputFile -PassThru
+$response = Invoke-WebRequest -Uri $gitUri -OutFile $gitOutputFile -PassThru -UseBasicParsing
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
 echo "Downloading Spotify..."
 $spotifyOutputFile = Join-Path $destinationPath (Split-Path $spotifyUri -Leaf)
-$response = Invoke-WebRequest -Uri $spotifyUri -OutFile $spotifyOutputFile -PassThru
+$response = Invoke-WebRequest -Uri $spotifyUri -OutFile $spotifyOutputFile -PassThru -UseBasicParsing
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
 echo "Downloading Emacs..."
 $emacsOutputFile = Join-Path $destinationPath (Split-Path $emacsUri -Leaf)
-$response = Invoke-WebRequest -Uri $emacsUri -OutFile $emacsOutputFile -PassThru
+$response = Invoke-WebRequest -Uri $emacsUri -OutFile $emacsOutputFile -PassThru -UseBasicParsing
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
 echo "Downloading Firefox..."
 $firefoxOutputFile = Join-Path $destinationPath (Split-Path $firefoxUri -Leaf)
-$response = Invoke-WebRequest -Uri $firefoxUri -OutFile $firefoxOutputFile -PassThru
+$response = Invoke-WebRequest -Uri $firefoxUri -OutFile $firefoxOutputFile -PassThru -UseBasicParsing
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
 Start-Process -FilePath $firefoxOutputFile -ArgumentList "/S", "/TaskbarShortcut=true", "/PreventRebootRequired=true"
