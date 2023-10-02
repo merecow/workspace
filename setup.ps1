@@ -6,7 +6,7 @@ $spotifyUri = "https://download.scdn.co/SpotifySetup.exe"
 
 $emacsUri = "https://mirror.lagoon.nc/gnu/emacs/windows/emacs-29/emacs-29.1-installer.exe"
 
-$firefoxUri = "https://download.mozilla.org/?product=firefox-stub&os=win64&lang=en-GB"
+$firefoxUri = "https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang=en-GB"
 
 echo "Downloading Git for Windows..."
 $gitOutputFile = Join-Path $destinationPath (Split-Path $gitUri -Leaf)
@@ -24,11 +24,11 @@ $response = Invoke-WebRequest -Uri $emacsUri -OutFile $emacsOutputFile -PassThru
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
 echo "Downloading Firefox..."
-$firefoxOutputFile = Join-Path $destinationPath (Split-Path $firefoxUri -Leaf)
+$firefoxOutputFile = Join-Path $destinationPath "firefox-installer.msi"
 $response = Invoke-WebRequest -Uri $firefoxUri -OutFile $firefoxOutputFile -PassThru -UseBasicParsing
 echo "Download returned HTTP response $($response.StatusCode) ($($response.StatusDescription))."
 
-Start-Process -FilePath $firefoxOutputFile -ArgumentList "/S", "/TaskbarShortcut=true", "/PreventRebootRequired=true"
+Start-Process msiexec -ArgumentList "/package","`"$firefoxOutputFile`""
 Start-Process -FilePath $gitOutputFile -ArgumentList "/VERYSILENT"
 Start-Process -FilePath $emacsOutputFile -ArgumentList "/S"
 Start-Process -FilePath $spotifyOutputFile -ArgumentList "/Silent"
