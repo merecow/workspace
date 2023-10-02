@@ -2,7 +2,7 @@ $destinationPath = $pwd
 
 $gitUri = "https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe"
 
-$spotifyUri = "https://download.spotify.com/SpotifyFullSetup.exe"
+$spotifyUri = "https://download.scdn.co/SpotifySetup.exe"
 
 $emacsUri = "https://mirror.lagoon.nc/gnu/emacs/windows/emacs-29/emacs-29.1-installer.exe"
 
